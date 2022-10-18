@@ -56,5 +56,18 @@ public function __construct(VisiteRepository $repository) {
        ]);
        
    }
+   /**
+    * @Route("/voyages/recherche/{champ}", name="voyages.findallequal")
+    * @param type $champ
+    * @param Request $request
+    * @return Response
+    */
+   public function findAllEqual($champ,Request $request):Response {
+       $valeur =$request->get("recherche");
+       $visites = $this->repository->findByEqualValur($champ,$valeur);
+       return $this->render("pages/voyages.html.twig",[
+           'visites'=> $visites
+       ]);
+   }
 }
 
